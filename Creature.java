@@ -37,7 +37,10 @@ public abstract class Creature
      * @param hp the health of the creature at the start of the simulation, and the current health levels during battle
      */
     public Creature (int str, int hp) {
-       //implement this
+      this.str = str;
+      this.hp = hp;
+      
+      max_hp = hp;
     }
     
     
@@ -47,9 +50,9 @@ public abstract class Creature
      */
     public int attack(){
         // TODO: implement a damage method
-        return 0;
+        return Randomizer.nextInt(str)+1;
     }
-    
+   
     
     /**
      * Is this creature still capable of fighting?
@@ -57,16 +60,29 @@ public abstract class Creature
      */
     public boolean isAlive() {
         // TODO: implement a method to report if the creature yet lives
+        if(hp > 0){
+         return false;   
+        }
+        
+        
         return false; //change this
     }
-    
+    public int getHealth(){
+     int hpRemaining = hp;
+     return hpRemaining;
+    }
     /**
      * Is this creature knockedOut?
      * @return true when current hit point level is less than or equal to zero
      */
     public boolean isKnockedOut() {
         //TODO: implement a method to report if the creature has been killed
+        if(hp <= 0){
+         return  true; 
+        }
+        else{
         return false; //change this
+    }
     }
     
     
@@ -74,9 +90,9 @@ public abstract class Creature
      * takeDamage receives a value for the amount of damage to subtract from 
      * the current total of hit points
      * @param damage value to remove from hit point count
-     */
+     */ 
     public void takeDamage(int damage) {
-        // TODO: implement this
+        hp -= damage;
     }
     
 }
